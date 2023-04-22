@@ -33,8 +33,29 @@ $ ssh -T git@github-name
 
 Cisco Keys encryption:
 =====================
+ssh_config
 Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc
 HostkeyAlgorithms ssh-dss,ssh-rsa,ssh-ed25519,ecdsa-sha2-nistp256
 KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group14-sha1
+
+JUMP
+====
+#Destination
+#Host 1.1.1.1
+Host 2.2.2.2
+  ProxyJump host-jumphost
+  User user_name
+  IdentityFile ~/.ssh/id_ed25519_oob
+
+# Jump
+Host host-jumphost example-dns-address
+  ProxyJump none
+  IdentityFile ~/.ssh/id_ed25519
+
+#######private IP jump
+#Host *100.240
+#  ProxyJump dns-address-inside-or-outside
+#  User user_name
+#  IdentityFile ~/.ssh/id_ed25519_oob
 
 
